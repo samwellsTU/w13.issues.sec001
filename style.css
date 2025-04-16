@@ -1,0 +1,90 @@
+body {
+    font-family: "Helvetica Neue", Segoe UI, sans-serif;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 3em auto;
+    padding: 0 1em;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #e4e4f0;
+}
+
+h1, h3 {
+    color: #fefefe;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.2em;
+}
+
+p, ul {
+    margin-bottom: 1em;
+}
+
+ul li {
+    margin-bottom: 0.3em;
+}
+
+button {
+    background: #ff6ec7;
+    color: #1f1c2c;
+    border: none;
+    padding: 0.7em 1.2em;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+    margin-bottom: 1em;
+}
+img {
+    width: 50%;
+    display: block;
+}
+button:hover {
+    background: #e057b0;
+    transform: translateY(-2px);
+}
+
+select {
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 6px;
+    border: 1px solid #444;
+    font-size: 1em;
+    background: #2a2a3b;
+    color: #e4e4f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+option {
+    background: #1f1c2c;
+    color: #f0f0ff;
+}
+
+pre {
+    background: #2a2a3b;
+    padding: 1em;
+    overflow-x: auto;
+    font-size: 0.95em;
+    border-radius: 6px;
+    border-left: 4px solid #ff6ec7;
+    color: #f0f0ff;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: #3b3b52;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #ffabff;
+}
+
+/* Optional: subtle grid overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
