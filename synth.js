@@ -161,6 +161,7 @@ const startNote = function (note, velocity) {
 const stopNote = function (note) {
   if (activeVoices[note]) {
     activeVoices[note].stop();
+    delete activeVoices[note];
   }
 };
 
