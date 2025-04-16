@@ -16,28 +16,28 @@ const scales = {
   "Melodic Minor": [0, 2, 3, 5, 7, 9, 11],
   "Major Pentatonic": [0, 2, 4, 7, 9],
   "Minor Pentatonic": [0, 3, 5, 7, 10],
-  "Blues": [0, 3, 5, 6, 7, 10],
+  Blues: [0, 3, 5, 6, 7, 10],
   "Perfect 5th": [0, 7],
-  "Dorian": [0, 2, 3, 5, 7, 9, 10],
-  "Phrygian": [0, 1, 3, 5, 7, 8, 10],
-  "Lydian": [0, 2, 4, 6, 7, 9, 11],
-  "Mixolydian": [0, 2, 4, 5, 7, 9, 10],
-  "Locrian": [0, 1, 3, 5, 6, 8, 10],
+  Dorian: [0, 2, 3, 5, 7, 9, 10],
+  Phrygian: [0, 1, 3, 5, 7, 8, 10],
+  Lydian: [0, 2, 4, 6, 7, 9, 11],
+  Mixolydian: [0, 2, 4, 5, 7, 9, 10],
+  Locrian: [0, 1, 3, 5, 6, 8, 10],
   "Whole Tone": [0, 2, 4, 6, 8, 10],
-  "Chromatic": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  Chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   "Octatonic (Half-Whole)": [0, 1, 3, 4, 6, 7, 9, 10],
   "Octatonic (Whole-Half)": [0, 2, 3, 5, 6, 8, 9, 11],
   "Hungarian Minor": [0, 2, 3, 6, 7, 8, 11],
-  "Persian": [0, 1, 4, 5, 6, 8, 11],
-  "Arabic": [0, 2, 4, 5, 6, 8, 10],
+  Persian: [0, 1, 4, 5, 6, 8, 11],
+  Arabic: [0, 2, 4, 5, 6, 8, 10],
   "Neapolitan Minor": [0, 1, 3, 5, 7, 8, 11],
   "Neapolitan Major": [0, 1, 3, 5, 7, 9, 11],
-  "Enigmatic": [0, 1, 4, 6, 8, 10, 11],
+  Enigmatic: [0, 1, 4, 6, 8, 10, 11],
   "Double Harmonic": [0, 1, 4, 5, 7, 8, 11],
-  "Pelog": [0, 1, 3, 7, 8],
+  Pelog: [0, 1, 3, 7, 8],
   "Yo Scale": [0, 2, 3, 7, 9],
-  "Hirajoshi": [0, 2, 3, 7, 8],
-  "Iwato": [0, 1, 5, 6, 10]
+  Hirajoshi: [0, 2, 3, 7, 8],
+  Iwato: [0, 1, 5, 6, 10],
 };
 
 /**
@@ -56,7 +56,7 @@ const key = {
   "G#/A\u266D": 8,
   A: 9,
   "A#/B\u266D": 10,
-  B: 11
+  B: 11,
 };
 
 // --------------------------------------
@@ -68,12 +68,12 @@ const scaleDropdown = document.getElementById("scaleSelect");
 
 // Populate the key dropdown
 for (let k in key) {
-  keyDropdown.innerHTML += `<optio value='${k}'>${k}</optio>`;
+  keyDropdown.innerHTML += `<option value='${k}'>${k}</optio>`;
 }
 
 // Populate the scale dropdown
 for (let s in scales) {
-  scaleDropdown.innerHTML += `<option value='${s}'>${scales}</option>`;
+  scaleDropdown.innerHTML += `<option value='${s}'>${s}</option>`;
 }
 
 // --------------------------------------
@@ -90,7 +90,7 @@ let currentScale;
 const updateKeyScale = function () {
   currentKey = key[keyDropdown.value];
   console.log(scaleDropdown.value);
-  currentScale = scales[scaleDropdown.value].map(d => (d + currentKey) % 12);
+  currentScale = scales[scaleDropdown.value].map((d) => (d + currentKey) % 12);
   console.log(currentScale);
 };
 
@@ -161,7 +161,6 @@ const startNote = function (note, velocity) {
 const stopNote = function (note) {
   if (activeVoices[note]) {
     activeVoices[note].stop();
-
   }
 };
 
@@ -175,8 +174,8 @@ const stopNote = function (note) {
  * @param {MIDIMessageEvent} midiEvent - The incoming MIDI event.
  */
 const midiParser = function (midiEvent) {
-  let command = midiEvent.data[0] & 0xF0;
-  let channel = midiEvent.data[0] & 0x0F;
+  let command = midiEvent.data[0] & 0xf0;
+  let channel = midiEvent.data[0] & 0x0f;
 
   switch (command) {
     case 0x90: // Note on
@@ -208,4 +207,6 @@ const onMIDISuccess = function (midiAccess) {
 navigator.requestMIDIAccess().then(onMIDISuccess);
 
 // Resume AudioContext on button click (required by browser security)
-document.querySelector("button").addEventListener("click", () => mySynthCtx.resume());
+document
+  .querySelector("button")
+  .addEventListener("click", () => mySynthCtx.resume());
